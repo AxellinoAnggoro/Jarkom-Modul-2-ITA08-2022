@@ -1,6 +1,6 @@
-# Jarkom-Modul-1-ITA08-2022
+# Jarkom-Modul-2-ITA08-2022
 
-Pengerjaan soal shift jarkom modul 1 oleh ITA08
+Pengerjaan soal shift jarkom modul 2 oleh ITA08
 
 # Anggota
 
