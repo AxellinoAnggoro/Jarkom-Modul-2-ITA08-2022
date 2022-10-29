@@ -808,4 +808,11 @@ Karena website www.eden.wise.yyy.com semakin banyak pengunjung dan banyak modifi
     - `NC` flag nocase digunakan agar RewriteRule tidak case-sensitive
     - `L` flag last digunakan agar mod_rewrite berhenti memproses rule set. Dengan demikan, jika rule yang ditetapkan sesuai, maka tidak ada rule lain yang akan diproses
 
+2. Restart server apache dengan command `service apache2 restart`
+
+### Testing
+- Hasil testing menggunakan command `lynx eden.wise.ita08.com/TESTINGITA08eden`
+![](img/soal_17/17a.png)
+![](img/soal_17/17b.png)
+
 ## Kendala Pengerjaan
