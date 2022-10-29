@@ -175,8 +175,6 @@ zone \"3.213.192.in-addr.arpa\" {
 #### Client SSS atau Garden
 Install dnsutils dengan perintah ```apt-get update``` lalu ```apt-get install dnsutils -y``` setelah itu lakukan testing dengan ```host -t PTR 192.213.3.2```
 
-<br>
-
 - Garden
 ![hostPTR-garden](img/hostptr-garden.png)
 
