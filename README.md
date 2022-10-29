@@ -149,7 +149,7 @@ Garden
 Buat juga reverse domain untuk domain utama.
 ### Penyelesaian
 ### Wise
-Tambhakan kode zone baru pada ```/etc/bind/named.conf.local```
+Tambahkan kode zone baru pada ```/etc/bind/named.conf.local```
 ```
 zone \"3.213.192.in-addr.arpa\" {
 	type master;
