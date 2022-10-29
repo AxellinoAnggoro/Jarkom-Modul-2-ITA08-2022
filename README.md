@@ -125,20 +125,18 @@ Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loi
 ## Soal 3
 Setelah itu ia juga ingin membuat subdomain eden.wise.yyy.com dengan alias www.eden.wise.yyy.com yang diatur DNS-nya di WISE dan mengarah ke Eden
 ### Penyelesaian
-### Wise
+#### Wise
 Tambahkan 3 line baru pada ```/etc/bind/wise/wise.ita08.com``` dengan kode seperti dibawah ini 
 ```
 www             IN      CNAME   wise.ita08.com.
 eden            IN      A       192.213.2.3 ;IP Eden
 www.eden        IN      CNAME   eden.wise.ita08.com.
 ```
-### Client SSS atau Garden
+#### Client SSS atau Garden
 Jika sudah selesai bisa langsung dilakukan testing dengan perintah 
 
 ```ping eden.wise.ita08.com```
 
-Garden
-<br>
 - Garden
     ![ping-eden-wise-garden](img/ping-eden-wise-garden.png)
 - SSS
@@ -148,7 +146,7 @@ Garden
 ## Soal 4
 Buat juga reverse domain untuk domain utama.
 ### Penyelesaian
-### Wise
+#### Wise
 Tambahkan kode zone baru pada ```/etc/bind/named.conf.local```
 ```
 zone \"3.213.192.in-addr.arpa\" {
@@ -174,7 +172,7 @@ zone \"3.213.192.in-addr.arpa\" {
 3.213.192.in-addr.arpa.   IN      NS      wise.ita08.com.
 2                         IN      PTR     wise.ita08.com
 ```
-### Client SSS atau Garden
+#### Client SSS atau Garden
 Install dnsutils dengan perintah ```apt-get update``` lalu ```apt-get install dnsutils -y``` setelah itu lakukan testing dengan ```host -t PTR 192.213.3.2```
 
 <br>
@@ -190,7 +188,7 @@ Install dnsutils dengan perintah ```apt-get update``` lalu ```apt-get install dn
 ## Soal 5
 Agar dapat tetap dihubungi jika server WISE bermasalah, buatlah juga Berlint sebagai DNS Slave untuk domain utama
 ### Penyelesaian
-### Wise
+#### Wise
 Tambahkan 3 line baru pada ```/etc/bind/named.conf.local``` untuk mengkonfigurasi DNS Slave ke Berlint
 
 ```
@@ -223,7 +221,7 @@ zone \"3.213.192.in-addr.arpa\" {
 Lalu untuk melakukan testing DNS Slave berhasil di konfigurasi bind9 Wise harus dimatikan menggunakan perintah ```service bind9 stop```
 
 
-### Berlint
+#### Berlint
 Pastikan pada Berlint sudah menginstall bind9, jika belum dapat di install dengan perintah ```apt-get update``` dan ```apt-get install bind9 -y```
 <br>
 Tambahkan zone wise.ita08.com pada ```/etc/bind/named.conf.local``` dengan masters mengarah ke IP Wise
@@ -249,7 +247,7 @@ Kemudian jangan lupa untuk melakukan restart bind9 ```service bind9 restart ```
 <img width="500" src="" />
 <br>
 
-### Client SSS atau Garden
+#### Client SSS atau Garden
 Jika sudah menyalakan service bind9 pada Berlint dan mematikan bind9 pada Wise, lakukan ping pada server client SSS atau Garden
 
 - Mematikan bind9 pada Wise
@@ -264,7 +262,7 @@ Jika sudah menyalakan service bind9 pada Berlint dan mematikan bind9 pada Wise, 
 ## Soal 6
 Karena banyak informasi dari Handler, buatlah subdomain yang khusus untuk operation yaitu operation.wise.yyy.com dengan alias www.operation.wise.yyy.com yang didelegasikan dari WISE ke Berlint dengan IP menuju ke Eden dalam folder operation
 ### Penyelesaian
-### Wise
+#### Wise
 Tambahkan 2 line pada ```/etc/bind/wise/wise.ita08.com```
 ```
 ns1             IN      A       192.213.2.2 ;IP Berlint
@@ -319,7 +317,7 @@ options {
 ```
 Kemudian restart bind9 ```service bind9 restart```
 <br>
-### Berlint
+#### Berlint
 Lakukan hal yang sama pada ```/etc/bind/named.conf.options```, comment line ```dnssec-validation auto;``` dan tambahkan line ```allow-query{any;};```
 
 Lalu tambahkan kode zone untuk delegasi subdomain pada ```/etc/bind/named.conf.local``` seperti dibawah ini :
@@ -359,7 +357,7 @@ Lalu karena diminta untuk menyimpan di folder operation, maka buat folder baru d
 
 Lalu mengcopy konfigurasi db.local dengan perintah seperti berikut ```cp /etc/bind/db.local /etc/bind/operation/operation.wise.ita08.com```
 
- Kemudian ediy file konfigurasinya di ```/etc/bind/operation/operation.wise.ita08.com```  menjadi seperti dibawah ini
+Kemudian edit file konfigurasinya di ```/etc/bind/operation/operation.wise.ita08.com```  menjadi seperti dibawah ini
 
 ```
 ;
@@ -379,7 +377,7 @@ www     IN      CNAME   operation.wise.ita08.com.
 ```
 Kemudian restart bind9 ```service bind9 restart```
 
-### Client Garden atau SSS
+#### Client Garden atau SSS
 Lakukan testing dengan ```ping operation.wise.ita08.com```
 
 - Garden
@@ -391,7 +389,7 @@ Lakukan testing dengan ```ping operation.wise.ita08.com```
 ## Soal 7
 Untuk informasi yang lebih spesifik mengenai Operation Strix, buatlah subdomain melalui Berlint dengan akses strix.operation.wise.yyy.com dengan alias www.strix.operation.wise.yyy.com yang mengarah ke Eden 
 ### Penyelesaian
-### Berlint
+#### Berlint
 Edit konfigurasi subdomain general pada ```/etc/bind/operation/operation.wise.ita08.com``` dengan menambahkan 2 line seperti dibawah ini
 
 ```
